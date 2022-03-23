@@ -25,6 +25,3 @@ Daten müssen wie wie folgt vorliegen?
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-## Onur Soysal Test 23.03
