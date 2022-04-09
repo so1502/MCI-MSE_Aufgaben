@@ -109,6 +109,10 @@ class Test:
 
         #self.peaks['average_HR_10s'].plot()
 
+        ## Calculate heart rate vairiability (natural time between two heartbeats, short HRV)
+
+        self.heart_rate_vairiability = self.duration_test_min*60 / self.number_of_heartbeats
+
     def evaluate_termination(self):
         """
         Evaluate the automatic termination of the test
@@ -138,6 +142,8 @@ class Test:
         print("Year of birth:  " + str(self.subject.birth_year))
         print("Test level power in W:  " + str(self.subject.test_power_w))
         print("Maximum HR was: " + str(self.maximum_hr))
+        print("Average HR was: " + str(round(self.average_hr_test, 0)))
+        print("Average HRV was: " +str(round(self.heart_rate_vairiability, 2)), "seconds")
         print("Was test terminated because exceeding HR: " + str(self.terminated))
         print("Was test terminated because for other reasons: " + str(self.manual_termination))
 
@@ -217,19 +223,25 @@ for file in os.listdir(folder_input_data):
         list_of_power_data.append(PowerData(file_name))
 
 
-# %% Programmablauf
+# %%
+## Programmablauf
 
 iterator = 0                                        # Zähler, der die gefundenen Dateien und damit Tests zählt
 
 for test in list_of_new_tests:                      # Alle Tests werden nacheinander durchlaufen
     test.create_hr_data()                           # Erstelle Herzraten aus den EKG-Daten
     test.add_subject(list_of_subjects[iterator])    # Fügt einem Test die passenden Versuchspersonen hinzu
-    test.evaluate_termination()
-    test.add_power_data(list_of_power_data[iterator])
-    test.create_plot()
-    test.create_summary()
-    test.ask_for_termination()
-    test.save_data()
+    test.evaluate_termination()                     # Prüft Abbruchskriterien
+    test.add_power_data(list_of_power_data[iterator]) # Fügt power_data hinzu
+    test.create_plot()                              # Visualisierung der Leistunngsdaten
+    test.create_summary()                           # Zusammenfassung der Leistungsdaten
+    test.ask_for_termination()                      # Frage nach Abbruch
+    test.save_data()                                # Speicher der Daten
 
-    iterator += iterator
-    
+    iterator = iterator + 1
+
+
+
+ 
+ # %%
+# %%
