@@ -1,0 +1,19 @@
+#%%
+##Create Logger for Subject data
+#logger = logging.getLogger('The_Logger')
+'''
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctimes)s:%(process)d')
+
+file_handler = logging.FileHandler('The_log')
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+'''
+#logging.basicConfig(filename='logfile', format='%(asctimes)s:%(messsage)s')
+
+        logger = logging.getLogger('my_Logger')
+        logging.basicConfig(filename='logfile', format='%(asctimes)s:%(messsage)s')
+        logger.info('Subject_ID: {}'.format(self.subject_id))
