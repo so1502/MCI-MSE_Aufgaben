@@ -1,9 +1,11 @@
 # %%
 # Import external packages
 
+from asyncio.log import logger
 import pandas as pd
 import neurokit2 as nk
 import json
+import logging
 
 # %%
 # Definition of Classes
@@ -20,6 +22,7 @@ class Subject():
     - test_power_w: int
 
     """
+
     def __init__(self, file_name):
         """
         Initialize the Subject-Object with the following attributes:	
@@ -28,14 +31,15 @@ class Subject():
         - subject_max_hr: int
         - subject_id: int
         - test_power_w: int
+        - also log who reads every data with time and saves every manual terminated test with time
     
         """
         __f = open(file_name)
         __subject_data = json.load(__f)
+        self.subject_id = __subject_data["subject_id"]
         self.birth_year = __subject_data["birth_year"]        
         self.age = 2022 - self.birth_year
         self.subject_max_hr = 220 - (2022 - __subject_data["birth_year"])
-        self.subject_id = __subject_data["subject_id"]
         self.test_power_w = __subject_data["test_power_w"]
 
 class PowerData():
@@ -188,10 +192,6 @@ class Test:
         with open(__results_file, 'w', encoding='utf-8') as f:
             json.dump(__data, f, ensure_ascii=False, indent=4)
 
-
-
-
-
 # %% Eigentlich Ablauf der Event-Pipeline
 
 ## Einlesen der Daten
@@ -239,9 +239,6 @@ for test in list_of_new_tests:                      # Alle Tests werden nacheina
     test.save_data()                                # Speicher der Daten
 
     iterator = iterator + 1
-
-
-
  
- # %%
-# %%
+ 
+  # %%
