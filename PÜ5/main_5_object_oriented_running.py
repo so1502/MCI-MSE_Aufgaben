@@ -1,4 +1,4 @@
-# %%
+# %% 
 # Import external packages
 
 from asyncio.log import logger
@@ -167,10 +167,10 @@ class Test:
         """
         Ask the diagnostician if the test should be terminated
         """
-        self.manual_termination = False
+        self.manual_termination = ""
         self.manual_termination = input("Is this test invalid? (leave blank if valid): ")
 
-        if self.manual_termination != False:
+        if self.manual_termination != "":
             logger_termination.info('Test (Subject {}) has been terminated manually.' .format(self.subject_id))
             self.termination = True
 
