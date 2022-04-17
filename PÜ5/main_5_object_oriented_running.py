@@ -6,6 +6,10 @@ import pandas as pd
 import neurokit2 as nk
 import json
 import logging
+import matplotlib
+from matplotlib import pyplot as plt
+import seaborn as sns
+import numpy as np
 
 #%%
 #Logging
@@ -174,7 +178,6 @@ class Test:
             logger_termination.info('Test (Subject {}) has been terminated manually.' .format(self.subject_id))
             self.termination = True
 
-
     def create_plot(self):
         """
         Create a plot of the test
@@ -182,10 +185,24 @@ class Test:
         self.plot_data = pd.DataFrame()
         self.plot_data["Heart Rate"] = self.hr_peaks[self.ecg_data.index % 1000 == 0]["average_HR_10s"]  
         self.plot_data = self.plot_data.reset_index(drop=True)
-
         self.plot_data["Power (Watt)"] = pd.to_numeric(self.power_data.power_data_watts)
-        self.plot_data.plot()
-    
+
+        fig = plt.figure()
+        plt.subplot()
+        plt.plot(self.plot_data["Heart Rate"], color="#420420", label = "Heart Rate")
+
+        plt.title('Subject {}'.format(self.subject_id))
+        ax = plt.subplot()
+        plt.plot(self.plot_data["Power (Watt)"], color="#ffd966", label = "Power Watt")
+        plt.tick_params(right=True, labelright=True )
+        plt.xlabel('Zeit / Sekunden')
+        plt.ylabel('Leistung / Watt')
+        ax2 = ax.twinx()
+        ax2.set_ylim(60,200)
+        ax2.set_ylabel("Herzfrequenz / bpm")
+        plt.legend(loc="lower right")
+        plt.show()
+        plt.savefig("main_5_object_oriented_running_logging.png")
 
     def save_data(self):
         """
@@ -205,7 +222,6 @@ class Test:
 # %% Eigentlich Ablauf der Event-Pipeline
 
 ## Einlesen der Daten
-
 
 ### Erstellen leerer Liste zur Verarbeitung
 list_of_new_tests = []
@@ -252,7 +268,16 @@ for test in list_of_new_tests:                      # Alle Tests werden nacheina
  
  
 
-  # %%
+
+
+
+
+
+
+
+
+
+
 
 # %%
 
