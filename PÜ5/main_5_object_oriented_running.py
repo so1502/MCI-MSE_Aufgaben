@@ -250,7 +250,7 @@ for file in os.listdir(folder_input_data):
 
 
 # %%
-## Programmablauf
+## Programmablauf.
 
 iterator = 0                                        # Zähler, der die gefundenen Dateien und damit Tests zählt
 
