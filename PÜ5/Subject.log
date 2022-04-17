@@ -575,3 +575,4 @@
 2022-04-17 15:08:32,180:INFO:Data of Subject 3 has been loaded.
 2022-04-17 15:08:32,815:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 2022-04-17 15:08:33,717:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2022-04-17 15:08:34,425:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
