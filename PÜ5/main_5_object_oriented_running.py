@@ -182,6 +182,7 @@ class Test:
         """
         Create a plot of the test
         """
+
         self.plot_data = pd.DataFrame()
         self.plot_data["Heart Rate"] = self.hr_peaks[self.ecg_data.index % 1000 == 0]["average_HR_10s"]  
         self.plot_data = self.plot_data.reset_index(drop=True)
@@ -201,8 +202,8 @@ class Test:
         ax2.set_ylim(60,200)
         ax2.set_ylabel("Herzfrequenz / bpm")
         plt.legend(loc="lower right")
+        plt.savefig("main_5_object_oriented_running_logging.py.jpg")
         plt.show()
-        plt.savefig("main_5_object_oriented_running_logging.png")
 
     def save_data(self):
         """
@@ -266,19 +267,5 @@ for test in list_of_new_tests:                      # Alle Tests werden nacheina
 
     iterator = iterator + 1
  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-# %%
 
 # %%
