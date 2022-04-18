@@ -177,6 +177,14 @@ class Test:
             logger_termination.info('Test (Subject {}) has been terminated manually.' .format(self.subject_id))
             self.termination = True
 
+    def build_path_plot(self):
+        
+        working_dir = os.path.dirname(file)
+        destination_dir = os.path.join(working_dir, 'result_data')
+        file_name = f"Subject {str(self.subject_id)} plot.jpeg"
+        file_path = os.path.join(destination_dir, file_name)
+        return file_path
+
     def create_plot(self):
         """
         Create a plot of the test
@@ -187,10 +195,10 @@ class Test:
         self.plot_data = self.plot_data.reset_index(drop=True)
         self.plot_data["Power (Watt)"] = pd.to_numeric(self.power_data.power_data_watts)
 
+
         fig = plt.figure()
         plt.subplot()
         plt.plot(self.plot_data["Heart Rate"], color="#420420", label = "Heart Rate")
-
         plt.title('Subject {}'.format(self.subject_id))
         ax = plt.subplot()
         plt.plot(self.plot_data["Power (Watt)"], color="#ffd966", label = "Power Watt")
@@ -201,7 +209,7 @@ class Test:
         ax2.set_ylim(60,200)
         ax2.set_ylabel("Herzfrequenz / bpm")
         plt.legend(loc="lower right")
-        plt.savefig("main_5_object_oriented_running_logging.py.jpg")
+        plt.savefig(self.build_path_plot())
         plt.show()
 
     def save_data(self):
@@ -264,6 +272,7 @@ for test in list_of_new_tests:                      # Alle Tests werden nacheina
     test.add_subject(list_of_subjects[iterator])    # Fügt einem Test die passenden Versuchspersonen hinzu
     test.evaluate_termination()                     # Prüft Abbruchskriterien
     test.add_power_data(list_of_power_data[iterator]) # Fügt power_data hinzu
+    test.build_path_plot()
     test.create_plot()                              # Visualisierung der Leistunngsdaten
     test.create_summary()                           # Zusammenfassung der Leistungsdaten
     test.ask_for_termination()                      # Frage nach Abbruch
