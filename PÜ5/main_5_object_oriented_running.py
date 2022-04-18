@@ -125,9 +125,9 @@ class Test:
 
         #self.peaks['average_HR_10s'].plot()
 
-        ## Calculate heart rate vairiability (natural time between two heartbeats, short HRV)
+        ## Calculate heart rate variability (natural time between two heartbeats, short HRV)
 
-        self.heart_rate_vairiability = self.duration_test_min*60 / self.number_of_heartbeats
+        self.heart_rate_variability = self.duration_test_min*60 / self.number_of_heartbeats
 
     def evaluate_termination(self):
         """
@@ -159,7 +159,7 @@ class Test:
         print("Test level power in W:  " + str(self.subject.test_power_w))
         print("Maximum HR was: " + str(self.maximum_hr))
         print("Average HR was: " + str(round(self.average_hr_test, 0)))
-        print("Average HRV was: " +str(round(self.heart_rate_vairiability, 2)), "seconds")
+        print("Average HRV was: " +str(round(self.heart_rate_variability, 2)), "seconds")
         print("Was test terminated because exceeding HR: " + str(self.terminated))
         print("Was test terminated because for other reasons: " + str(self.manual_termination))
 
@@ -177,7 +177,7 @@ class Test:
             logger_termination.info('Test (Subject {}) has been terminated manually.' .format(self.subject_id))
             self.termination = True
 
-    def build_path_plot(self):
+    def path_plot(self):
         
         working_dir = os.path.dirname(file)
         destination_dir = os.path.join(working_dir, 'result_data')
@@ -209,19 +209,25 @@ class Test:
         ax2.set_ylim(60,200)
         ax2.set_ylabel("Herzfrequenz / bpm")
         plt.legend(loc="lower right")
-        plt.savefig(self.build_path_plot())
+        plt.savefig(self.path_plot())
         plt.show()
 
     def save_data(self):
         """
         Store the test data in a JSON file
         """
-        __data = {"User ID": self.subject_id,
-                 "Reason for test termation": self.manual_termination, 
-                 "Average Heart Rate": self.average_hr_test, 
-                 "Maximum Heart Rate": self.maximum_hr, 
-                 "Test Length (s)": self.power_data.duration_s, 
-                 "Test Power (W)": self.subject.test_power_w}
+        __data = {
+            "Test": {
+                    "User ID": self.subject_id,
+                    "Automatic termination": self.terminated,
+                    "Manual termination": self.manual_termination, 
+                    "Average Heart Rate": self.average_hr_test,
+                    "Heart rate variability": self.heart_rate_variability, 
+                    "Maximum Heart Rate": self.maximum_hr, 
+                    "Test Length (s)": self.power_data.duration_s, 
+                    "Test Power (W)": self.subject.test_power_w,
+                    "path of plot": self.path_plot()}
+                    }
 
         __folder_current = os.path.dirname(__file__) 
         __folder_input_data = os.path.join(__folder_current, 'result_data')
@@ -272,7 +278,7 @@ for test in list_of_new_tests:                      # Alle Tests werden nacheina
     test.add_subject(list_of_subjects[iterator])    # Fügt einem Test die passenden Versuchspersonen hinzu
     test.evaluate_termination()                     # Prüft Abbruchskriterien
     test.add_power_data(list_of_power_data[iterator]) # Fügt power_data hinzu
-    test.build_path_plot()
+    test.path_plot()                                #Path of plot
     test.create_plot()                              # Visualisierung der Leistunngsdaten
     test.create_summary()                           # Zusammenfassung der Leistungsdaten
     test.ask_for_termination()                      # Frage nach Abbruch

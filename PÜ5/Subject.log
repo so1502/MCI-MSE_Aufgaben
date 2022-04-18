@@ -628,3 +628,13 @@
 2022-04-18 21:43:36,922:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 2022-04-18 21:43:37,915:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 2022-04-18 21:43:38,291:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2022-04-18 21:59:29,988:INFO:Data of Subject 1 has been loaded.
+2022-04-18 21:59:29,988:INFO:Data of Subject 2 has been loaded.
+2022-04-18 21:59:29,989:INFO:Data of Subject 3 has been loaded.
+2022-04-18 21:59:45,768:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2022-04-18 21:59:46,754:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2022-04-18 21:59:47,196:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2022-04-18 22:02:04,185:INFO:Data of Subject 1 has been loaded.
+2022-04-18 22:02:04,186:INFO:Data of Subject 2 has been loaded.
+2022-04-18 22:02:04,186:INFO:Data of Subject 3 has been loaded.
+2022-04-18 22:02:04,801:WARNING:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.

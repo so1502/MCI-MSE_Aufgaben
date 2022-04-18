@@ -1,8 +1,13 @@
 {
-    "User ID": "3",
-    "Reason for test termation": "",
-    "Average Heart Rate": 133.33333333333334,
-    "Maximum Heart Rate": 186.0,
-    "Test Length (s)": 180,
-    "Test Power (W)": 300
+    "Test": {
+        "User ID": "3",
+        "Automatic termination": false,
+        "Manual termination": "",
+        "Average Heart Rate": 133.33333333333334,
+        "Heart rate variability": 0.45,
+        "Maximum Heart Rate": 186.0,
+        "Test Length (s)": 180,
+        "Test Power (W)": 300,
+        "path of plot": "result_data\\Subject 3 plot.jpeg"
+    }
 }
