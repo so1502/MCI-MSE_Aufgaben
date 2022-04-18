@@ -8,7 +8,6 @@ import json
 import logging
 import matplotlib
 from matplotlib import pyplot as plt
-import seaborn as sns
 import numpy as np
 
 #%%
@@ -209,7 +208,12 @@ class Test:
         """
         Store the test data in a JSON file
         """
-        __data = {"User ID": self.subject_id, "Reason for test termation": self.manual_termination, "Average Heart Rate": self.average_hr_test, "Maximum Heart Rate": self.maximum_hr, "Test Length (s)": self.power_data.duration_s, "Test Power (W)": self.subject.test_power_w}
+        __data = {"User ID": self.subject_id,
+                 "Reason for test termation": self.manual_termination, 
+                 "Average Heart Rate": self.average_hr_test, 
+                 "Maximum Heart Rate": self.maximum_hr, 
+                 "Test Length (s)": self.power_data.duration_s, 
+                 "Test Power (W)": self.subject.test_power_w}
 
         __folder_current = os.path.dirname(__file__) 
         __folder_input_data = os.path.join(__folder_current, 'result_data')
@@ -267,5 +271,6 @@ for test in list_of_new_tests:                      # Alle Tests werden nacheina
 
     iterator = iterator + 1
  
+
 
 # %%
